@@ -43,10 +43,10 @@ function bindata(articles){
 
     cardscontainer.innerHTML ="";
 
-    articles.forEach(article => {
-        if(!article.urlToImage){
-            return;
-        }
+    articles.forEach((article) => {
+        // if(!article.urlToImage){
+        //     return;
+        // }
       const cardClone = newcardtemplate.content.cloneNode(true);
        fillDataInCard(cardClone, article);
       cardscontainer.appendChild(cardClone);
