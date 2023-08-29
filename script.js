@@ -5,32 +5,6 @@ const URL = "https://newsapi.org/v2/everything?q"
 window.addEventListener("load" , ()=>fetchNews("India"));
 
 
-async function fetchNews(query){
-    const res = await fetch(`${URL}=${query}&apikey=${NEWS_API}`);
-    const data = await res.json();
-    bindata(data.articles);
-    // console.log(data);
-}
-
-function bindata(articles){
-    const cardscontainer = document.getElementById("cards-container");
-    const newcardtemplate = document.getElementById("template-news-card");
-
-    cardscontainer.innerHTML ="";
-
-    articles.forEach(article => {
-        if(!article.urlToImage){
-            return ;
-        }
-      const cardClone = newcardtemplate.content.cloneNode(true);
-       fillDataInCard(cardClone, article);
-      cardscontainer.appendChild(cardClone);
-        
-
-    });
-}
-
-
 function fillDataInCard(cardClone, article){
 
     const newImg = cardClone.getElementById("news-img");
@@ -53,6 +27,36 @@ function fillDataInCard(cardClone, article){
   });
 
 }
+
+
+function bindata(articles){
+    const cardscontainer = document.getElementById("cards-container");
+    const newcardtemplate = document.getElementById("template-news-card");
+
+    cardscontainer.innerHTML ="";
+
+    articles.forEach(article => {
+        if(!article.urlToImage){
+            return ;
+        }
+      const cardClone = newcardtemplate.content.cloneNode(true);
+       fillDataInCard(cardClone, article);
+      cardscontainer.appendChild(cardClone);
+        
+
+    });
+}
+
+
+async function fetchNews(query){
+    const res = await fetch(`${URL}=${query}&apikey=${NEWS_API}`);
+    const data = await res.json();
+    bindata(data.articles);
+    console.log(data);
+}
+
+
+
 
 //NAVBAR TWO OR THREE DTATA
 let curSelectedNav = null;
